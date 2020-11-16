@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, jsonify
 import os
-from google import google
 from function_search import bot_request
 
 app = Flask(__name__)
