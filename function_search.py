@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import re
 import json
 from datetime import datetime
-import unidecode
+
 
 stop_wrods = [
     'alors', 'au', 'aucuns', 'aussi', 'autre', 'avant', 'avec', 'avoir', 'bon',
