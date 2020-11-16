@@ -9,7 +9,7 @@
 <body class="bg-image">
     <div class=header>
         <div id="pseudo">
-            <p> Chat bot with Google Search</p>
+            <p> Chat bot</p>
         </div>
     </div>
 
@@ -45,7 +45,7 @@
 
                 var message = $('#msg').val();
                 console.log(message);
-                $(".chat_box").append('<div class="chat_box_msg"> Moi: '  + message + '</dvi>');
+                $(".chat_box").append('<div class="chat_box_msg"><font color="blue"> Moi:</font> '  + message + '</dvi>');
                 $.ajax({
                     type: "POST",
                     url: "/ask",
@@ -55,7 +55,7 @@
 
                         var answer = response.answer;
                         const chatPanel = document.getElementById(".chat_box");
-                        $(".chat_box").append('<div class="chat_box_msg"> BOT: ' +  answer + '</div>');
+                        $(".chat_box").append('<div class="chat_box_msg"> <font color="red">Chat-BOT:</font> ' +  answer + '</div>');
 
                     },
                     error: function (error) {
