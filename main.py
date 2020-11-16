@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import os
 from google import google
-from test_search import bot_request
+from function_search import bot_request
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
