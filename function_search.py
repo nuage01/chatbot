@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import re
 import json
 from datetime import datetime
+import logging
 
 
 stop_wrods = [
@@ -32,8 +33,7 @@ HEADERS = {
     'Connection': "keep-alive",
     'TE': "Trailers",
     'Upgrade-Insecure-Requests': "1",
-    'User-Agent':
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:74.0) Gecko/20100101 Firefox/74.0",
+    'User-Agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:74.0) Gecko/20100101 Firefox/74.0",
     'Referer': "www.google.com"
 }
 
@@ -98,6 +98,7 @@ def bot_request(query):
             resultat = paragraphe if len(paragraphe) > 3 else fail
 
         return resultat
-    except:
+    except Exception as e:
+        logging.warning(e)
         if len(resultat) == 0: resultat = fail
         return resultat
