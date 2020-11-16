@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ellyes's chat bot</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+<body class="bg-image">
+    <div class=header>
+        <div id="pseudo">
+            <p> Chat bot with Google Search</p>
+        </div>
+    </div>
+
+    <div id=conainter>
+
+        <div id="chat_box" class="chat_box">
+
+        </div>
+        <div id="messagebox">
+            <p><b>Tapez votre message içi:</b></p>
+            <form id="form" method="POST">
+                <label for="fname">message</label>
+                <input type="text" id="msg" name="msg">
+
+                <button class="headers_button" type="submit"> Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <script>
+        // function inspired by https://github.com/vyraun to use ajax with flask
+        $(function () {
+            $('#headers_button').click(function (e) {
+                e.preventDefault();
+                $('#form').submit();
+            });
+
+            $('#form').submit(function (e) {
+                e.preventDefault();
+
+                var message = $('#msg').val();
+                console.log(message);
+                $(".chat_box").append('<div class="chat_box_msg"> Moi: '  + message + '</dvi>');
+                $.ajax({
+                    type: "POST",
+                    url: "/ask",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $('#msg').val('');
+
+                        var answer = response.answer;
+                        const chatPanel = document.getElementById(".chat_box");
+                        $(".chat_box").append('<div class="chat_box_msg"> BOT: ' +  answer + '</div>');
+
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        console.log('NO POST');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
